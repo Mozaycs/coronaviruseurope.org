@@ -16,12 +16,16 @@
     "gatsby": "^2.16.4",
     "gatsby-plugin-emotion": "^4.2.0",
     "gatsby-plugin-react-leaflet": "^2.0.12",
+    "gatsby-source-graphql": "^2.2.0",
+    "gatsby-source-rest-api": "^0.2.3",
     "gatsby-theme-github-stats": "^0.5.3",
     "leaflet": "^1.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-leaflet": "^2.6.3"
+    "react-icons": "^3.9.0",
+    "react-leaflet": "^2.6.3",
+    "react-select": "^3.0.8"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

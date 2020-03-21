@@ -29,35 +29,24 @@ const Index = () => {
             min-width: 100%;
             ul {
               display: flex;
-              justify-content: space-between;
+              justify-content: space-evenly;
+              list-style-type: none;
             }
           `}
         >
           <h2>Overview</h2>
           <ul>
             <li>
-              4,488<p>Open Issues</p>
-              <p>(-1 since yesterday)</p>
+              <p>Confirmed</p>
+              <p>10000</p>
             </li>
             <li>
-              80,564<p>Closed Issues</p>
-              <p>(+37 since yesterday)</p>
+              <p>Recoveries</p>
+              <p>25000</p>
             </li>
             <li>
-              164<p>Open PRs</p>
-              <p>(-1 since yesterday)</p>
-            </li>
-            <li>
-              4,875<p>Merged PRs</p>
-              <p>(+1 since yesterday)</p>
-            </li>
-            <li>
-              1,826<p>Closed PRs</p>
-              <p>(+2 since yesterday)</p>
-            </li>
-            <li>
-              93,188<p>Stars</p>
-              <p>(56 since yesterday)</p>
+              <p>Deaths</p>
+              <p>1000</p>
             </li>
           </ul>
         </section>

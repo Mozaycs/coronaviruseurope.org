@@ -15,5 +15,13 @@ module.exports = {
     },
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-leaflet`,
+    {
+      resolve: "gatsby-source-rest-api",
+      options: {
+        endpoints: [
+          "https://coronavirus-tracker-api.herokuapp.com/v2/locations",
+        ],
+      },
+    },
   ],
 }
