@@ -1,4 +1,4 @@
-import { Map, Marker, Popup, TileLayer } from "react-leaflet"
+import { CircleMarker, Map, Popup, TileLayer } from "react-leaflet"
 import { StaticQuery, graphql } from "gatsby"
 
 import FindDistrict from "./findDistrict"
@@ -21,6 +21,8 @@ const DistrictMap = ({ selectedDistrict }) => {
   height: 350px;
 }
   `
+
+  const isSelected = false
 
   const position = [state.lat, state.lng]
   return (
@@ -72,13 +74,36 @@ const DistrictMap = ({ selectedDistrict }) => {
                   attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {/* {edges[0].node.locations.map(item => (
-                  <Marker position={[item.]}>
+                {edges[0].node.locations.map(item => (
+                  <CircleMarker
+                    key={item.id}
+                    stroke={isSelected ? true : false}
+                    fillOpacity={isSelected ? 0.8 : 1}
+                    color="#D71921"
+                    center={[
+                      item.coordinates.latitude,
+                      item.coordinates.longitude,
+                    ]}
+                    radius={isSelected ? 10 : 6}
+                    onMouseOver={e => {
+                      e.target.openPopup()
+                      if (!isSelected) {
+                        // prefetchPathname(`/riding/${district.slug}`)
+                      }
+                    }}
+                    onMouseOut={e => {
+                      e.target.closePopup()
+                    }}
+                    onClick={() => console.log("clicked")}
+                  >
                     <Popup>
-                      A pretty CSS3 popup. <br /> Easily customizable.
+                      <strong>Riding</strong>: {item.country}
+                      <br />
+                      <strong>Winner</strong>: <br />
+                      <strong>Confidence</strong>:{" "}
                     </Popup>
-                  </Marker>
-               ))} */}
+                  </CircleMarker>
+                ))}
               </Map>
               <FindDistrict
                 counties={edges[0].node.locations}
