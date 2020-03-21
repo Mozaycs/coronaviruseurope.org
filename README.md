@@ -33,3 +33,7 @@ First off is an action that queries the GitHub [V4 GraphQL API](https://develope
 ### Stats Loader
 
 The other action then queries the Firebase database to grab the last 336 entries which equates to the last 2 weeks of data. It then prints it out to a `data.json` file in the `src/data/` directory and then commits it to the repository. This triggers a deploy to Netlify for the site to be rebuilt.
+
+### twitter feeds
+
+https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update

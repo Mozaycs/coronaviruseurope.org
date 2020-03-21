@@ -33,7 +33,7 @@ const Header = ({ shadow }) => (
             top: 0.15rem;
           `}
         ></span>{" "}
-        Coronaviruseurope.org
+        Coronavirus / COVID-19
       </Link>
       <div
         css={css`
@@ -44,7 +44,7 @@ const Header = ({ shadow }) => (
       >
         <Link to="/about">About</Link>
         <a
-          href="https://github.com/rosslh/metaprojection"
+          href="https://github.com/Mozaycs/coronaviruseurope.org"
           target="_blank"
           rel="noopener noreferrer"
         >
