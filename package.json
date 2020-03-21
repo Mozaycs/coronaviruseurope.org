@@ -1,0 +1,29 @@
+{
+  "name": "coronaviruseurope.org",
+  "private": true,
+  "description": "A stats dashboard for the corona virus spread",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "gatsby": "^2.16.4",
+    "gatsby-plugin-emotion": "^4.2.0",
+    "gatsby-plugin-react-leaflet": "^2.0.12",
+    "gatsby-theme-github-stats": "^0.5.3",
+    "leaflet": "^1.6.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-leaflet": "^2.6.3"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
