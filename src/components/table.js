@@ -9,7 +9,7 @@ export default function Table({ data }) {
       columns: [
         {
           Header: "Country",
-          accessor: "country",
+          accessor: "countryName",
         },
         {
           Header: "Confirmed",

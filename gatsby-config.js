@@ -4,24 +4,20 @@ module.exports = {
   siteMetadata: {
     title: "Coronavirus stats",
     source: "https://coronaviruseurope.org/",
-    repoNameWithOwner: "Coronavirus",
+    owner: {
+      name: "Mozayc",
+      source: "http://www.mozayc.net/",
+    },
+    contributers: [
+      {
+        name: "Darshan Kumar",
+        twitter: "darshaneldorado",
+      },
+      {
+        name: "Krunal Patel",
+        twitter: "kprocks07",
+      },
+    ],
   },
-  plugins: [
-    {
-      resolve: `gatsby-theme-github-stats`,
-      options: {
-        dataPath: path.join(__dirname, `src`, `data`),
-      },
-    },
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-react-leaflet`,
-    {
-      resolve: "gatsby-source-rest-api",
-      options: {
-        endpoints: [
-          "https://coronavirus-tracker-api.herokuapp.com/v2/locations",
-        ],
-      },
-    },
-  ],
+  plugins: [`gatsby-plugin-emotion`, `gatsby-plugin-react-leaflet`],
 }
