@@ -33,7 +33,7 @@ const Footer = ({ publishTimestamp, contributers = [], owner }) => {
             }
           `}
         >
-          Made by{" "}
+          COVID-19 support please follow us@{" "}
           {contributers.map(item => (
             <a
               key={item.name}
@@ -44,7 +44,7 @@ const Footer = ({ publishTimestamp, contributers = [], owner }) => {
               {item.name}
             </a>
           ))}
-          <span>at</span>
+          <span>& Other partners support</span>
           <a target="_blank" rel="noopener noreferrer" href={owner.source}>
             {owner.name}
           </a>

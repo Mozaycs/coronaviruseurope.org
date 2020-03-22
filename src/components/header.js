@@ -42,7 +42,7 @@ const Header = ({ shadow }) => (
           }
         `}
       >
-        <Link to="/about">About</Link>
+        <Link to="/aboutus">About</Link>
         <a
           href="https://github.com/Mozaycs/coronaviruseurope.org"
           target="_blank"

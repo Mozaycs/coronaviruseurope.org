@@ -5,8 +5,8 @@ module.exports = {
     title: "Coronavirus stats",
     source: "https://coronaviruseurope.org/",
     owner: {
-      name: "Mozayc",
-      source: "http://www.mozayc.net/",
+      name: "KernAdler",
+      source: "https://www.kernadler.com",
     },
     contributers: [
       {
@@ -16,6 +16,10 @@ module.exports = {
       {
         name: "Krunal Patel",
         twitter: "kprocks07",
+      },
+      {
+        name: "Mozayc",
+        twitter: "mozayc",
       },
     ],
   },

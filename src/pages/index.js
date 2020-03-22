@@ -16,9 +16,9 @@ const Index = props => {
   const config = props.data.site.siteMetadata
   useEffect(() => {
     Promise.all([
-      fetch("https://coronavirus-tracker-api.herokuapp.com/v2/locations").then(
-        res => res.json()
-      ),
+      fetch(
+        "https://coronavirus-tracker-api.herokuapp.com/v2/locations"
+      ).then(res => res.json()),
       fetch("https://api.coronatracker.com/v2/analytics/country").then(res =>
         res.json()
       ),
