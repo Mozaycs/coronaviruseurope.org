@@ -7,7 +7,7 @@ import PropTypes from "prop-types"
 import Select from "react-select"
 import { navigate } from "gatsby"
 
-const FindDistrict = ({ counties }) => {
+const FindCountry = ({ counties }) => {
   const [selectedOption, setSelectedOption] = useState(null)
   const options = counties.map(d => ({
     value: d.id,
@@ -160,7 +160,7 @@ const FindDistrict = ({ counties }) => {
               `}
             >
               <IoMdPin />
-              &nbsp;Your riding
+              &nbsp;Your Location
             </div>
           </div>
         ) : null}
@@ -182,7 +182,7 @@ const FindDistrict = ({ counties }) => {
               white-space: nowrap;
             `}
           >
-            Select riding
+            Select Country
           </label>
           <ClassNames>
             {({ css: style }) => (
@@ -199,7 +199,7 @@ const FindDistrict = ({ counties }) => {
                 value={selectedOption}
                 onChange={handleChange}
                 options={options}
-                placeholder="Select riding"
+                placeholder="Select Country"
               />
             )}
           </ClassNames>
@@ -209,8 +209,8 @@ const FindDistrict = ({ counties }) => {
   )
 }
 
-FindDistrict.propTypes = {
+FindCountry.propTypes = {
   districts: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default FindDistrict
+export default FindCountry

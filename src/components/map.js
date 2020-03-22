@@ -1,7 +1,6 @@
-import { CircleMarker, Map, Popup, TileLayer } from "react-leaflet"
-import { StaticQuery, graphql } from "gatsby"
+import { CircleMarker, Map, Marker, Popup, TileLayer } from "react-leaflet"
 
-import FindDistrict from "./findDistrict"
+import FindCountry from "./findCountry"
 import PropTypes from "prop-types"
 import React from "react"
 import { css } from "@emotion/core"
@@ -12,7 +11,7 @@ const state = {
   zoom: 13,
 }
 
-const DistrictMap = ({ selectedDistrict }) => {
+const DistrictMap = ({ locations }) => {
   const mapHeightStyle = `
   @media (max-width: 700px) {
   height: 280px;
@@ -25,95 +24,63 @@ const DistrictMap = ({ selectedDistrict }) => {
   const isSelected = false
 
   const position = [state.lat, state.lng]
+
   return (
-    <StaticQuery
-      query={graphql`
-        {
-          allRestApiV2Locations {
-            edges {
-              node {
-                id
-                locations {
-                  id
-                  coordinates {
-                    latitude
-                    longitude
-                  }
-                  country
-                  country_code
-                  last_updated
-                  latest {
-                    confirmed
-                    deaths
-                    recovered
-                  }
-                }
-              }
-            }
+    <>
+      <div
+        css={css`
+          overflow: hidden;
+          > * {
+            ${mapHeightStyle}
+            width: 100%;
           }
-        }
-      `}
-      render={({ allRestApiV2Locations: { edges } }) => {
-        return (
-          <>
-            <div
-              css={css`
-                overflow: hidden;
-                > * {
-                  ${mapHeightStyle}
-                  width: 100%;
+        `}
+      >
+        <Map
+          center={position}
+          zoom={state.zoom}
+          bounds={[[40.84, -135.79], [60.06, -49.75]]}
+        >
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position} />
+          {locations.map(item => (
+            <CircleMarker
+              key={item.id}
+              stroke={isSelected ? true : false}
+              fillOpacity={isSelected ? 0.8 : 1}
+              color="#D71921"
+              center={[item.coordinates.latitude, item.coordinates.longitude]}
+              radius={isSelected ? 10 : 6}
+              onMouseOver={e => {
+                e.target.openPopup()
+                if (!isSelected) {
+                  // prefetchPathname(`/riding/${district.slug}`)
                 }
-              `}
+              }}
+              onMouseOut={e => {
+                e.target.closePopup()
+              }}
+              onClick={() => console.log("clicked")}
             >
-              <Map
-                center={position}
-                zoom={state.zoom}
-                bounds={[[40.84, -135.79], [60.06, -49.75]]}
-              >
-                <TileLayer
-                  attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {edges[0].node.locations.map(item => (
-                  <CircleMarker
-                    key={item.id}
-                    stroke={isSelected ? true : false}
-                    fillOpacity={isSelected ? 0.8 : 1}
-                    color="#D71921"
-                    center={[
-                      item.coordinates.latitude,
-                      item.coordinates.longitude,
-                    ]}
-                    radius={isSelected ? 10 : 6}
-                    onMouseOver={e => {
-                      e.target.openPopup()
-                      if (!isSelected) {
-                        // prefetchPathname(`/riding/${district.slug}`)
-                      }
-                    }}
-                    onMouseOut={e => {
-                      e.target.closePopup()
-                    }}
-                    onClick={() => console.log("clicked")}
-                  >
-                    <Popup>
-                      <strong>Riding</strong>: {item.country}
-                      <br />
-                      <strong>Winner</strong>: <br />
-                      <strong>Confidence</strong>:{" "}
-                    </Popup>
-                  </CircleMarker>
-                ))}
-              </Map>
-              <FindDistrict
-                counties={edges[0].node.locations}
-                // selectedDistrict={selectedDistrict}
-              />
-            </div>
-          </>
-        )
-      }}
-    />
+              <Popup>
+                <strong>Country</strong>: {item.country}
+                <br />
+                <strong>Confirmed</strong>:{item.latest.confirmed} <br />
+                <strong>Recovered</strong>:{item.latest.recovered} <br />
+                <strong>Deaths</strong>:{item.latest.deaths}
+              </Popup>
+            </CircleMarker>
+          ))}
+        </Map>
+        <FindCountry
+          counties={locations}
+          // selectedDistrict={selectedDistrict}
+        />
+      </div>
+    </>
   )
 }
 
