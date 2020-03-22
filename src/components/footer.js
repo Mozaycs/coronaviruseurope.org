@@ -33,7 +33,7 @@ const Footer = ({ publishTimestamp, contributers = [], owner }) => {
             }
           `}
         >
-          COVID-19 support please follow us@{" "}
+          COVID-19 contributors. Please follow us@{" "}
           {contributers.map(item => (
             <a
               key={item.name}
