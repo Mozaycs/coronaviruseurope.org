@@ -1,8 +1,7 @@
 import { CircleMarker, Map, Marker, Popup, TileLayer } from "react-leaflet"
+import React, { useEffect, useState } from "react"
 
-import FindCountry from "./findCountry"
 import PropTypes from "prop-types"
-import React from "react"
 import { css } from "@emotion/core"
 
 const state = {
@@ -17,13 +16,37 @@ const DistrictMap = ({ locations }) => {
   height: 280px;
 }
   @media (min-width: 701px) {
-  height: 350px;
+  height: 450px;
 }
-  `
+`
+  const [position, setPosition] = useState([state.lat, state.lng])
+
+  useEffect(() => {
+    geolocate()
+  })
+
+  const geolocationApiAvailable = () => {
+    try {
+      return (
+        navigator &&
+        navigator.geolocation &&
+        navigator.geolocation.getCurrentPosition
+      )
+    } catch (e) {
+      return false
+    }
+  }
+
+  const geolocate = () => {
+    if (geolocationApiAvailable()) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        const userLocation = [pos.coords.latitude, pos.coords.longitude]
+        setPosition(userLocation)
+      })
+    }
+  }
 
   const isSelected = false
-
-  const position = [state.lat, state.lng]
 
   return (
     <>
@@ -36,11 +59,7 @@ const DistrictMap = ({ locations }) => {
           }
         `}
       >
-        <Map
-          center={position}
-          zoom={state.zoom}
-          bounds={[[40.84, -135.79], [60.06, -49.75]]}
-        >
+        <Map center={position} zoom={state.zoom}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -75,10 +94,10 @@ const DistrictMap = ({ locations }) => {
             </CircleMarker>
           ))}
         </Map>
-        <FindCountry
-          counties={locations}
-          // selectedDistrict={selectedDistrict}
-        />
+        {/*<FindCountry
+          counties={countries}
+          selectedDistrict={selectedDistrict}
+        /> */}
       </div>
     </>
   )

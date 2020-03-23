@@ -10,53 +10,12 @@ import { navigate } from "gatsby"
 const FindCountry = ({ counties }) => {
   const [selectedOption, setSelectedOption] = useState(null)
   const options = counties.map(d => ({
-    value: d.id,
-    label: d.country,
+    value: d.countryCode,
+    label: d.countryName,
   }))
   const handleChange = option => {
     navigate(`/riding/${option.value}`)
     setSelectedOption(option)
-  }
-
-  const geolocationApiAvailable = () => {
-    try {
-      return (
-        navigator &&
-        navigator.geolocation &&
-        navigator.geolocation.getCurrentPosition
-      )
-    } catch (e) {
-      return false
-    }
-  }
-
-  const geolocate = () => {
-    if (geolocationApiAvailable()) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const userLocation = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          }
-          fetch(
-            `https://represent.opennorth.ca/boundaries/?contains=${userLocation.latitude},${userLocation.longitude}&sets=federal-electoral-districts`
-          )
-            .then(r => r.json())
-            .then(r => {
-              if (r && r.objects && r.objects[0] && r.objects[0].external_id) {
-                const userDistrictNumber = r.objects[0].external_id
-                navigate(`/district/${userDistrictNumber}`)
-              } else {
-              }
-            })
-            .catch(() => {})
-        },
-        () => {
-          // err
-        }
-      )
-    } else {
-    }
   }
 
   return (
@@ -102,68 +61,19 @@ const FindCountry = ({ counties }) => {
           }
         `}
       >
-        {geolocationApiAvailable() && false ? (
-          <div>
-            <button
-              css={css`
-                line-height: ${true ? "1.5rem" : "2rem"};
-                padding: 0 1rem;
-                border-radius: 2rem;
-                background-color: ${false ? "#fdfdfd" : "#950451"};
-                color: ${true ? "#555" : "white"};
-                font-weight: ${true ? "normal" : "bold"};
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                border: ${true ? "2px solid #777;" : "none"};
-                box-sizing: content-box;
-                cursor: pointer;
-                :hover {
-                  opacity: 0.9;
-                }
-              `}
-              onClick={geolocate}
-            >
-              {true ? (
-                <>
-                  <span
-                    css={css`
-                      font-size: 1.1rem;
-                      padding-bottom: 0.2rem;
-                      padding-right: 0.25rem;
-                      > * {
-                        vertical-align: middle;
-                      }
-                    `}
-                  >
-                    <MdErrorOutline />
-                  </span>
-                  {false || "Location services unavailable"}
-                </>
-              ) : (
-                <>
-                  <IoMdPin />
-                  &nbsp;Find my riding
-                </>
-              )}
-            </button>
+        <div>
+          <div
+            css={css`
+              color: #950451;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+            `}
+          >
+            <IoMdPin />
+            &nbsp;Your Location
           </div>
-        ) : null}
-        {true ? (
-          <div>
-            <div
-              css={css`
-                color: #950451;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-              `}
-            >
-              <IoMdPin />
-              &nbsp;Your Location
-            </div>
-          </div>
-        ) : null}
+        </div>
         <div>
           {/*Hide except for screenreaders*/}
           <label

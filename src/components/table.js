@@ -3,29 +3,33 @@ import { css } from "@emotion/core"
 import { useTable } from "react-table"
 
 export default function Table({ data }) {
-  const columns = [
-    {
-      Header: "Info",
-      columns: [
-        {
-          Header: "Country",
-          accessor: "countryName",
-        },
-        {
-          Header: "Confirmed",
-          accessor: "confirmed",
-        },
-        {
-          Header: "Deaths",
-          accessor: "deaths",
-        },
-        {
-          Header: "Recovered",
-          accessor: "recovered",
-        },
-      ],
-    },
-  ]
+  const momoizeData = React.useMemo(() => data, [])
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Info",
+        columns: [
+          {
+            Header: "Country",
+            accessor: "countryName",
+          },
+          {
+            Header: "Confirmed",
+            accessor: "confirmed",
+          },
+          {
+            Header: "Deaths",
+            accessor: "deaths",
+          },
+          {
+            Header: "Recovered",
+            accessor: "recovered",
+          },
+        ],
+      },
+    ],
+    []
+  )
 
   const {
     getTableProps,
@@ -35,7 +39,7 @@ export default function Table({ data }) {
     prepareRow,
   } = useTable({
     columns,
-    data,
+    data: momoizeData,
   })
 
   // Render the UI for your table
