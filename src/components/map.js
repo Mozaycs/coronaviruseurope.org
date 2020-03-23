@@ -7,7 +7,7 @@ import { css } from "@emotion/core"
 const state = {
   lat: 52,
   lng: -95,
-  zoom: 13,
+  zoom: 3,
 }
 
 const DistrictMap = ({ locations }) => {
