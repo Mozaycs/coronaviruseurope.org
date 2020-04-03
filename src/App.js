@@ -58,9 +58,11 @@ const colorScale = chroma.scale(["#fefee9", "#6c0101"])
 const colorBreakDown = Array.apply(null, Array(10)).map((_, i) =>
   colorScale(i / 10)
 )
+//ReactGA.initialize("UA-162018035-1", { standardImplementation: true })
 
 function App() {
-  ReactGA.initialize("UA-162018035-1")
+  ReactGA.initialize("UA-162018035-1", { standardImplementation: true })
+  ReactGA.pageview(window.location.pathname + window.location.search)
   // eslint-disable-next-line no-unused-vars
   const [staticMap, setStaticMap] = useState()
   const [geoJson, setGeoJson] = useState()
