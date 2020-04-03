@@ -1,37 +1,43 @@
 {
-  "name": "coronaviruseurope.org",
-  "private": true,
-  "description": "A stats dashboard for the corona virus spread",
+  "name": "covid-19-map",
   "version": "0.1.0",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve"
-  },
+  "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
-    "date-fns": "^2.11.0",
-    "gatsby": "^2.16.4",
-    "gatsby-plugin-emotion": "^4.2.0",
-    "gatsby-plugin-google-analytics": "^2.2.2",
-    "gatsby-plugin-gtag": "^1.0.13",
-    "gatsby-plugin-react-leaflet": "^2.0.12",
-    "gatsby-source-graphql": "^2.2.0",
-    "gatsby-source-rest-api": "^0.2.3",
-    "gatsby-source-twitter": "^3.2.1",
-    "leaflet": "^1.6.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-icons": "^3.9.0",
-    "react-leaflet": "^2.6.3",
-    "react-select": "^3.0.8",
-    "react-table": "^7.0.0"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.0.3",
+    "axios": "^0.19.2",
+    "chroma-js": "^2.1.0",
+    "deck.gl": "^8.0.17",
+    "lodash": "^4.17.15",
+    "numeral": "^2.0.6",
+    "react": "^16.13.0",
+    "react-colorscales": "^0.7.3",
+    "react-device-detect": "^1.11.14",
+    "react-dom": "^16.13.0",
+    "react-map-gl": "^5.2.3",
+    "react-scripts": "3.4.0"
   },
-  "devDependencies": {
-    "prettier": "^1.18.2"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
