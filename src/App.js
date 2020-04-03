@@ -60,6 +60,7 @@ const colorBreakDown = Array.apply(null, Array(10)).map((_, i) =>
 )
 
 function App() {
+  ReactGA.initialize("UA-162018035-1")
   // eslint-disable-next-line no-unused-vars
   const [staticMap, setStaticMap] = useState()
   const [geoJson, setGeoJson] = useState()
