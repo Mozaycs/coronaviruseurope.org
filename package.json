@@ -1,5 +1,5 @@
 {
-  "name": "covid-19-map",
+  "name": "coronaviruseurope.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,7 @@
     "react-colorscales": "^0.7.3",
     "react-device-detect": "^1.11.14",
     "react-dom": "^16.13.0",
+    "react-ga": "^2.7.0",
     "react-map-gl": "^5.2.3",
     "react-scripts": "3.4.0"
   },
